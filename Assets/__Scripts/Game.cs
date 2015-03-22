@@ -98,6 +98,10 @@ public class Game : MonoBehaviour
 		}
 	}
 
+	/***
+	 * An Invoke callback to restart the board for real.
+	 * 
+	 */
 	void RestartGame()
 	{
 		Board.S.RestartBoard(true);
