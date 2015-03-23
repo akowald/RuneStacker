@@ -38,6 +38,7 @@ public class Board : MonoBehaviour
 	public GameObject particleExplode; // Explosion particle effect when the runes explode
 	private float timeNextAction; // The time the next action should start
 	private int multiplier; // The current multiplier for points. Based on how many times the board has cascaded
+	private bool paused; // If the board is paused, the player can no longer select runs
 
 	public enum SoundClips{Select=0, Swap, Smash_Common, Smash_Rare, Smash_UltraRare, GameOver};
 	public AudioClip[] audioClips; // A list of audio clips that can be played
@@ -61,8 +62,7 @@ public class Board : MonoBehaviour
 	 */
 	public void RestartBoard(bool effects=false)
 	{
-		gameState = GameState.Paused;
-
+		paused = true;
 		if(effects)
 		{
 			// Animate the runes instead of having them disappear instantly
@@ -84,6 +84,7 @@ public class Board : MonoBehaviour
 		clickedRune = null;
 		swappedRune = null;
 		gameState = GameState.Empty;
+		paused = false;
 
 		// Populute the board with runes
 		InitializeBoard();
@@ -690,7 +691,7 @@ public class Board : MonoBehaviour
 		// Restart the board when the R key is pressed
 		if(Input.GetKeyUp(KeyCode.R))
 		{
-			if(gameState == GameState.Ready)
+			if(gameState == GameState.Ready && !paused)
 			{
 				RestartBoard(true);
 			}
@@ -704,7 +705,7 @@ public class Board : MonoBehaviour
 	 */
 	public void PauseBoard(bool pause)
 	{
-		gameState = GameState.Paused;
+		paused = pause;
 	}
 
 	/***

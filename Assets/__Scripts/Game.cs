@@ -93,7 +93,6 @@ public class Game : MonoBehaviour
 			}
 
 			Board.S.PauseBoard(true); // Freeze the board so the user can't change it
-
 			Invoke("RestartGame", 5.0f);
 		}
 	}
