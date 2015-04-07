@@ -56,7 +56,7 @@ public class Rune : MonoBehaviour
 	{
 		if(backGlow == null) return;
 
-		backGlow.GetComponent<SpriteRenderer>().renderer.material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f); // Restore the default alpha on the rune
+		backGlow.GetComponent<SpriteRenderer>().GetComponent<Renderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f); // Restore the default alpha on the rune
 
 		if(glowing)
 		{

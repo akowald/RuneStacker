@@ -8,16 +8,16 @@ public class ParticleHelper : MonoBehaviour
 	{
 		// Ensure that the particle effects show on top of the sprites
 		SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-		particleSystem.renderer.sortingLayerID = spriteRenderer.sortingLayerID;
-		particleSystem.renderer.sortingOrder = spriteRenderer.sortingOrder;
+		GetComponent<ParticleSystem>().GetComponent<Renderer>().sortingLayerID = spriteRenderer.sortingLayerID;
+		GetComponent<ParticleSystem>().GetComponent<Renderer>().sortingOrder = spriteRenderer.sortingOrder;
 	}
 
 	void Update ()
 	{
 		// Clean up the particle when it finishes running
-		if(particleSystem != null)
+		if(GetComponent<ParticleSystem>() != null)
 		{
-			if(!particleSystem.IsAlive())
+			if(!GetComponent<ParticleSystem>().IsAlive())
 			{
 				Destroy (gameObject);
 			}

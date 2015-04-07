@@ -253,6 +253,7 @@ public class Board : MonoBehaviour
 	public void OnRuneClick(Rune rune)
 	{
 		if(gameState != GameState.Ready) return;
+		if(paused) return;
 
 		if(clickedRune == null)
 		{
@@ -323,16 +324,16 @@ public class Board : MonoBehaviour
 	 */
 	public void PlaySound(SoundClips sound)
 	{
-		audio.volume = 1.0f;
-		audio.pitch = 1.0f;
+		GetComponent<AudioSource>().volume = 1.0f;
+		GetComponent<AudioSource>().pitch = 1.0f;
 		if(sound == SoundClips.Smash_Common || sound == SoundClips.Smash_Rare || sound == SoundClips.Smash_UltraRare)
 		{
-			audio.volume = 0.7f;
-			if(sound == SoundClips.Smash_Common) audio.pitch += 0.25f * multiplier;
+			GetComponent<AudioSource>().volume = 0.7f;
+			if(sound == SoundClips.Smash_Common) GetComponent<AudioSource>().pitch += 0.25f * multiplier;
 		}
 
-		audio.clip = audioClips[(int)sound];
-		audio.Play();
+		GetComponent<AudioSource>().clip = audioClips[(int)sound];
+		GetComponent<AudioSource>().Play();
 	}
 
 	/***
